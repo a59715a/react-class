@@ -329,46 +329,12 @@ export default function Home() {
 
 ![1745727213715](image/Content/1745727213715.png)
 
-#### **使用 useState 管理狀態 Using useState for State Management**
-
-當使用到 useState 就需要在 頁面加上 `"use client";`  因為 useState 是 React 的 Hooks 之一。
-useState用於讓變數可以 讀寫分離、在畫面上更新
-When using useState, you need to add `"use client";` at the top of the page because useState is one of React's Hooks .
-useState is used to separate read/write operations for variables and update them on the UI.
-
-Example:
-
-```tsx
-"use client";
-import { Button } from "primereact/button";
-import { useState } from "react";
-
-export default function Home() {
-  const [count, setCount] = useState(0);
-
-  const increment = () => {
-    setCount(count + 1);
-  };
-  return (
-    <div>
-      <p>計數：{count}</p>
-      <Button onClick={increment}>增加</Button>
-    </div>
-  );
-}
-
-```
-
-![1745729816896](image/Content/1745729816896.png)
-
 #### **練習題目 Practice Tasks**
 
 1. 使用 **常數(或變數)渲染**  渲染出 `Hello World!`
+   Use **constant (or variable) rendering** to render `Hello World!`
 2. 寫一個  Funtion ，傳入參數 `小明`  渲染出 `小明 你好 !`
-3. 使用 useState 做出一個計數器，並且有歸零、+1 、-1 的功能
-4. Use **constant (or variable) rendering** to render `Hello World!`
-5. Write a Function that takes a parameter `John` and renders `Hello John!`
-6. Use useState to create a counter with reset, +1, and -1 functionality
+   Write a Function that takes a parameter `John` and renders `Hello John`
 
 #### 提示
 
@@ -435,14 +401,12 @@ Course Highlights
 4. **React 事件處理** 🖱️
 
    - 基本事件處理器的使用
-   - useState Hook 的應用
    - 狀態管理與更新
    - 按鈕互動功能的實現
 5. **實作練習** ✅
 
    - 變數渲染練習
    - 函式元件實作
-   - 計數器功能開發
 
 ## 課程總結
 

@@ -6,16 +6,16 @@
 
 ## 📅 課程資訊 | Course Information
 
-| 項目               | 內容                                                              |
-| ------------------ | ----------------------------------------------------------------- |
+| 項目         | 內容                                                              |
+| ------------ | ----------------------------------------------------------------- |
 | **總共週數** | 6 週                                                              |
 | **每週時數** | 2 小時                                                            |
 | **對象**     | 可能對 VSCode、HTML、JavaScript 不太熟悉                          |
 | **技術使用** | React(Next.js)、TypeScript、Tailwind CSS、PrimeReact              |
 | **學習重點** | 畫面呈現、導覽列、基本語法、UI 元素建立、簡單表單與計算功能、CRUD |
 
-| Item                          | Content                                                                                                       |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Item                    | Content                                                                                                       |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------- |
 | **Total Weeks**         | 6 weeks                                                                                                       |
 | **Hours per Week**      | 2 hours                                                                                                       |
 | **Target Audience**     | May be unfamiliar with VSCode, HTML, JavaScript                                                               |
@@ -88,69 +88,82 @@ While building your own components allows for complete customization, if you wan
 
 ---
 
-### ✅ 第 2 週：畫面設計與導覽列（Navbar）建立
+### ✅ 第 2 週：React 核心概念與 PrimeReact 元件應用
 
-### ✅ Week 2: UI Design and Navigation Bar (Navbar) Creation
+### ✅ Week 2: React Core Concepts and PrimeReact Components
 
 #### 課程內容 | Course Content
 
-- 🧩 建立組件與使用 PrimeReact 組件（Button, Menubar）
-- 🗺️ 建立 Navbar 元件（含首頁、關於、聯絡我們）
-- 🎨 Tailwind CSS 語法介紹與查詢方式
-- 🎯 使用 Tailwind 改變樣式（margin、padding、color、flex）
+- 🧩 React 組件概念與 Props 傳遞
+- 🔄 useState 基礎應用
+- 🎨 PrimeReact 基礎元件教學
+  - Card 元件：標題、內容、頁尾設計
+  - Button 元件：樣式、圖示、事件處理
+  - InputText 元件：基本輸入、驗證、提示文字
+  - FloatLabel 元件：浮動標籤效果
+  - RadioButton 元件：單選功能、群組設定
+  - Checkbox 元件：複選功能、狀態管理
+  - Dropdown 元件：選項設定、過濾功能、事件處理
 
 #### 練習內容 | Practice Content
 
-- 🎯 製作 Navbar 元件並切換畫面內容（條件渲染）
+- 🎯 實作會員註冊表單（使用各種 PrimeReact 元件）
+- 🎯 建立商品卡片展示頁面（使用 Card 元件）
+- 🎯 設計問卷調查表單（使用 RadioButton、Checkbox、Dropdown）
 
 ---
 
-### ✅ 第 3 週：輸入與狀態（state 的基礎應用）
+### ✅ 第 3 週：進階狀態管理與計算功能
 
-### ✅ Week 3: Input and State (Basic State Management)
+### ✅ Week 3: Advanced State Management and Calculation Functions
 
 #### 課程內容 | Course Content
 
-- 📝 使用 PrimeReact 的 InputText、Dropdown、Button
-- 🔄 使用 useState 處理輸入內容與變更
-- 🖱️ onChange 事件處理
-- 🎨 Tailwind 表單排版（grid、gap、寬度）
+- 📝 複雜狀態管理（多個 useState 整合）
+- ➕ 計算邏輯實作與錯誤處理
+- 🔄 資料轉換與格式化
+- 🎯 使用 PrimeReact 進階元件（InputNumber, ButtonGroup）
 
 #### 練習內容 | Practice Content
 
-- 🎯 製作一個簡單表單，輸入姓名並按鈕送出後顯示問候語
+- 🎯 實作多功能計算機（加減乘除、記憶功能）
+- 🎯 使用 PrimeReact 元件建立專業計算機介面
 
 ---
 
-### ✅ 第 4 週：表單與計算機應用（一）加減乘除
+### ✅ 第 4 週：資料處理與動態渲染
 
-### ✅ Week 4: Form and Calculator Application (I) - Basic Arithmetic
+### ✅ Week 4: Data Processing and Dynamic Rendering
 
 #### 課程內容 | Course Content
 
-- 📝 表單送出流程與資料轉換（preventDefault、parseFloat）
-- ➕ 四則運算基本邏輯與錯誤處理
-- 🎯 使用 PrimeReact ButtonGroup
+- 📊 資料結構設計與處理
+- 🔄 動態列表渲染與排序
+- 💰 貨幣轉換與格式化
+- 🎨 使用 PrimeReact 資料展示元件（DataTable, Card）
 
 #### 練習內容 | Practice Content
 
-- 🎯 製作一個加減乘除小工具：輸入兩數字，選擇運算，顯示結果
+- 🎯 實作貨幣轉換器（支援多種貨幣）
+- 🎯 使用 DataTable 展示轉換歷史記錄
 
 ---
 
-### ✅ 第 5 週：表單與計算機應用（二）貨幣兌換器
+### ✅ 第 5 週：導覽列與路由設計
 
-### ✅ Week 5: Form and Calculator Application (II) - Currency Converter
+### ✅ Week 5: Navigation Bar and Routing Design
 
 #### 課程內容 | Course Content
 
-- 💰 延伸表單練習：輸入金額 + 幣別選擇
-- 🔄 匯率轉換邏輯與條件渲染
-- 🎨 Tailwind 美化輸出格式
+- 🗺️ 建立 Navbar 元件與路由設定
+- 🔄 頁面切換與狀態管理
+- 🎨 使用 PrimeReact 導覽元件（Menubar, Breadcrumb）
+- 📱 響應式設計與佈局
 
 #### 練習內容 | Practice Content
 
-- 🎯 製作簡易貨幣兌換器（TWD/USD/JPY，匯率寫死）
+- 🎯 實作完整導覽系統（首頁、功能頁面、設定頁面）
+- 🎯 整合前幾週功能到導覽系統中
 
 ---
 
