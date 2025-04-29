@@ -335,41 +335,21 @@ export default function Home() {
    Use **constant (or variable) rendering** to render `Hello World!`
 2. 寫一個  Funtion ，傳入參數 `小明`  渲染出 `小明 你好 !`
    Write a Function that takes a parameter `John` and renders `Hello John`
+3. 寫一個按鈕，按下去會顯示 `新年快樂`
+   Write a button that displays `Happy New Year` when clicked
 
 #### 提示
 
 #### Hints
 
 ```ts
-  // function.....
-
-  return (
-    <div className="container">
-      <h1>{strHello}</h1>
-      <h2>{returnHello("小明")}</h2>
-      <h2>Count: {count}</h2>
-      <div>
-        <Button
-          label="Add"
-          icon="pi pi-plus"
-          severity="success"
-          onClick={CountAdd}
-        />
-        <Button
-          label="Minus"
-          icon="pi pi-minus"
-          severity="danger"
-          onClick={CountMinus}
-        />
-        <Button
-          label="Reset"
-          icon="pi pi-refresh"
-          severity="warning"
-          onClick={CountReset}
-        />
-      </div>
-    </div>
-  );
+    return (
+        <div className="container">
+            <h1>{strHello}</h1>
+            <h2>{returnHello("小明")}</h2>
+            <Button label="Click me  按下我" icon="pi pi-car" onClick={handleClick} />
+        </div>
+    );
 ```
 
 #### **範例解答 Example Solution**
