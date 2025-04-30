@@ -183,7 +183,10 @@ let person: Person = {
 };
 ```
 
-##### 常數(或變數)渲染
+##### 常數(或變數)渲染 Constant (or Variable) Rendering
+
+在 React 中，我們可以透過大括號 `{}` 來渲染常數或變數的值。這是一個基本的渲染方式，讓我們可以在 JSX 中動態顯示資料。
+In React, we can render the value of constants or variables using curly braces `{}`. This is a basic rendering method that allows us to dynamically display data in JSX.
 
 請試著在 `src\app\page.tsx` 中修改以下內容：
 Try to modify the following content in `src\app\page.tsx`:
@@ -297,11 +300,29 @@ React Event Handling
 在 `src\app\layout.tsx` 貼上CSS
 Paste CSS in `src\app\layout.tsx`
 
+
 ```ts
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 ```
+
+
+修改 globals.css 
+
+```css
+/* @import "tailwindcss"; */
+
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+```
+
+
+
+
+
 
 ![1745508940963](image/Content/1745508940963.png)
 

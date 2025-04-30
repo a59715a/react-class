@@ -31,6 +31,8 @@ React Component Concepts and Props Passing
 
 In React, components are the basic building blocks of user interfaces. Components can be functions or classes, they receive inputs (called props) and return React elements that describe what should appear on the screen.
 
+![1745977511558](image/Content/1745977511558.png)
+
 ```tsx
 import React from "react";
 
@@ -61,6 +63,7 @@ Props 是組件之間傳遞數據的主要方式。它們是只讀的，這意�
 
 Props are the primary way to pass data between components. They are read-only, meaning a component cannot modify its props.
 
+![1745977551410](image/Content/1745977551410.png)
 
 ```tsx
 // 定義組件 Define Component
@@ -92,26 +95,33 @@ Basic useState Application
 #### **狀態管理基礎 Basic State Management**
 
 useState 是 React 的一個 Hook，它允許我們在函數組件中添加狀態。
+將需要即時顯示、重新渲染的狀態變數，放在 useState 中。
 
-useState is a React Hook that allows us to add state to function components.
+useState is a Hook in React that allows us to add state to function components.
+Place state variables that need to be displayed and re-rendered in real-time in useState.
 
-![1745847319615](image/Content/1745847319615.png)
+#### **useState 基本語法 Basic Syntax**
+
+![1745978006634](image/Content/1745978006634.png)
 
 ```tsx
+// useState 基本語法 Basic Syntax
 "use client";
 import { useState } from "react";
+import { Button } from "primereact/button";
 
 export default function Counter() {
-  const [count, setCount] = useState(0);
+    const [count, setCount] = useState(0);
 
-  return (
-    <div>
-      <p>計數: {count}</p>
-      <button onClick={() => setCount(count + 1)}>增加</button>
-      <button onClick={() => setCount(count - 1)}>減少</button>
-    </div>
-  );
+    return (
+        <div>
+            <p>計數: {count}</p>
+            <Button onClick={() => setCount(count + 1)}>增加</Button>
+            <Button onClick={() => setCount(count - 1)}>減少</Button>
+        </div>
+    );
 }
+
 ```
 
 #### **多個狀態管理 Multiple State Management**
@@ -164,23 +174,33 @@ Card 元件用於展示內容，通常包含標題、內容和頁尾。
 
 Card component is used to display content, usually containing a title, content, and footer.
 
+![1745994429931](image/Content/1745994429931.png)
+
+
 ```tsx
 "use client";
 import { Card } from "primereact/card";
+import { Image } from 'primereact/image';
+import { Button } from 'primereact/button';
 
 export default function ProductCard() {
-  return (
-    <Card
-      title="商品名稱"
-      subTitle="商品描述"
-      style={{ width: "25rem", marginBottom: "2em" }}
-    >
-      <p className="m-0">
-        這是一個商品卡片，可以用來展示商品資訊。
-      </p>
-    </Card>
-  );
+    return (
+        <Card
+            title="商品名稱"
+            subTitle="商品描述"
+            style={{ width: "25rem", marginBottom: "2em" }}
+        >
+            <p className="m-0">
+                這是一個商品卡片，可以用來展示商品資訊。
+            </p>
+            <Image src="https://png.pngtree.com/element_our/20190530/ourlarge/pngtree-stacked-creative-book-illustration-image_1245638.jpg"
+                alt="商品圖片" width="200" height="200" />
+            <p className="text-2xl font-bold">100 元</p>
+            <Button label="購買" />
+        </Card>
+    );
 }
+
 ```
 
 #### **Button 元件 Button Component**
@@ -188,6 +208,8 @@ export default function ProductCard() {
 Button 元件提供多種樣式和功能。
 
 Button component provides various styles and functions.
+
+![1745994713730](image/Content/1745994713730.png)
 
 ```tsx
 "use client";
