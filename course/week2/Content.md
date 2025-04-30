@@ -254,6 +254,52 @@ export default function InputDemo() {
 }
 ```
 
+#### **RadioButton 元件 RadioButton Component**
+
+RadioButton 元件用於單選功能。
+
+RadioButton component is used for single selection.
+
+```tsx
+"use client";
+import { RadioButton } from "primereact/radiobutton";
+
+export default function RadioButtonDemo() {
+  return (
+    <div>
+      <RadioButton value="male" />
+      <RadioButton value="female" />
+    </div>
+  );
+}
+```
+
+#### **Checkbox 元件 Checkbox Component**
+
+Checkbox 元件用於多選功能。
+
+Checkbox component is used for multiple selection.
+
+```tsx
+"use client";
+import { Checkbox } from "primereact/checkbox";
+
+export default function CheckboxDemo() {
+  return (
+    <div>
+      <Checkbox value="reading" />
+      <Checkbox value="writing" />
+      <Checkbox value="drawing" />
+    </div>
+  );
+}
+```
+
+
+
+
+
+
 ### 4. ✍️ 實作練習：會員註冊表單
 
 Practice: Member Registration Form
