@@ -6,16 +6,16 @@
 
 ## 📅 課程資訊 | Course Information
 
-| 項目         | 內容                                                              |
-| ------------ | ----------------------------------------------------------------- |
+| 項目               | 內容                                                              |
+| ------------------ | ----------------------------------------------------------------- |
 | **總共週數** | 6 週                                                              |
 | **每週時數** | 2 小時                                                            |
 | **對象**     | 可能對 VSCode、HTML、JavaScript 不太熟悉                          |
 | **技術使用** | React(Next.js)、TypeScript、Tailwind CSS、PrimeReact              |
 | **學習重點** | 畫面呈現、導覽列、基本語法、UI 元素建立、簡單表單與計算功能、CRUD |
 
-| Item                    | Content                                                                                                       |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Item                          | Content                                                                                                       |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | **Total Weeks**         | 6 weeks                                                                                                       |
 | **Hours per Week**      | 2 hours                                                                                                       |
 | **Target Audience**     | May be unfamiliar with VSCode, HTML, JavaScript                                                               |
@@ -188,14 +188,4 @@ While building your own components allows for complete customization, if you wan
 
 ---
 
-## 🎁 補充建議 | Additional Suggestions
-
-- 📚 提供範例程式碼片段與 GitHub starter 專案
-- 🔌 推薦 VSCode 插件：Tailwind CSS IntelliSense、Prettier
-- 🚀 額外教材（如有興趣）：部署到 Netlify 或 Vercel
-
----
-
-如需簡報內容或每堂課詳細講義，也可進一步製作。
-
-If you need presentation content or detailed handouts for each class, they can be further prepared.
+- 🚀 額外教材（如有興趣）：部署到 Cloudflare  Pages   除此之外也可以使用(Netlify 或 Vercel)
