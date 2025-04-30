@@ -92,6 +92,8 @@ While building your own components allows for complete customization, if you wan
 
 ### ✅ Week 2: React Core Concepts and PrimeReact Components
 
+[📖 詳細課程內容 | Detailed Course Content](course/week2/Content.md)
+
 #### 課程內容 | Course Content
 
 - 🧩 React 組件概念與 Props 傳遞

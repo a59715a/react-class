@@ -176,7 +176,6 @@ Card component is used to display content, usually containing a title, content, 
 
 ![1745994429931](image/Content/1745994429931.png)
 
-
 ```tsx
 "use client";
 import { Card } from "primereact/card";
@@ -234,6 +233,8 @@ InputText 元件用於文字輸入。
 
 InputText component is used for text input.
 
+![1746022709273](image/Content/1746022709273.png)
+
 ```tsx
 "use client";
 import { InputText } from "primereact/inputtext";
@@ -260,18 +261,27 @@ RadioButton 元件用於單選功能。
 
 RadioButton component is used for single selection.
 
+![1746022998477](image/Content/1746022998477.png)
+
 ```tsx
 "use client";
 import { RadioButton } from "primereact/radiobutton";
-
+import { useState } from "react";
 export default function RadioButtonDemo() {
-  return (
-    <div>
-      <RadioButton value="male" />
-      <RadioButton value="female" />
-    </div>
-  );
+    const [value, setValue] = useState("");
+    return (
+        <>
+            <div className="flex flex-row gap-0 items-center">
+                <RadioButton name="gender" checked={value === "male"} value="male" onChange={(e) => setValue(e.value)} />
+                <label htmlFor="male">男</label>
+                <RadioButton name="gender" checked={value === "female"} value="female" onChange={(e) => setValue(e.value)} />
+                <label htmlFor="female">女</label>
+            </div>
+            <p>選擇的值: {value}</p>
+        </>
+    );
 }
+
 ```
 
 #### **Checkbox 元件 Checkbox Component**
@@ -280,25 +290,69 @@ Checkbox 元件用於多選功能。
 
 Checkbox component is used for multiple selection.
 
+
+![1746024550318](image/Content/1746024550318.png)
+
 ```tsx
+// Checkbox 元件 Checkbox Component
 "use client";
 import { Checkbox } from "primereact/checkbox";
+import { useState } from "react";
 
 export default function CheckboxDemo() {
-  return (
-    <div>
-      <Checkbox value="reading" />
-      <Checkbox value="writing" />
-      <Checkbox value="drawing" />
-    </div>
-  );
+    const [selections, setSelections] = useState<string[]>([]);
+    return (
+        <>
+            <div className="flex flex-row gap-0 items-center">
+                <Checkbox
+                    value="reading"
+                    checked={selections.includes("reading")}
+                    onChange={(e) => {
+                        if (e.checked) {
+                            // 勾選的情況 將選項加入陣列 if e.checked is true , add the value to the array
+                            setSelections([...selections, e.value]);
+                        } else {
+                            // 取消勾選的情況 將選項從陣列中移除 if e.checked is false , remove the value from the array
+                            setSelections(selections.filter(item => item !== e.value));
+                        }
+                    }}
+                />
+                <label htmlFor="reading">閱讀</label>
+                <Checkbox
+                    value="writing"
+                    checked={selections.includes("writing")}
+                    onChange={(e) => {
+                        if (e.checked) {
+                            // 勾選的情況 將選項加入陣列 if e.checked is true , add the value to the array
+                            setSelections([...selections, e.value]);
+                        } else {
+                            // 取消勾選的情況 將選項從陣列中移除 if e.checked is false , remove the value from the array
+                            setSelections(selections.filter(item => item !== e.value));
+                        }
+                    }}
+                />
+                <label htmlFor="writing">寫作</label>
+                <Checkbox
+                    value="drawing"
+                    checked={selections.includes("drawing")}
+                    onChange={(e) => {
+                        if (e.checked) {
+                            // 勾選的情況 將選項加入陣列 if e.checked is true , add the value to the array
+                            setSelections([...selections, e.value]);
+                        } else {
+                            // 取消勾選的情況 將選項從陣列中移除 if e.checked is false , remove the value from the array
+                            setSelections(selections.filter(item => item !== e.value));
+                        }
+                    }}
+                />
+                <label htmlFor="drawing">繪畫</label>
+            </div>
+            <p>選擇的值: {selections.join(", ")}</p>
+        </>
+    );
 }
+
 ```
-
-
-
-
-
 
 ### 4. ✍️ 實作練習：會員註冊表單
 
@@ -312,29 +366,86 @@ Practice: Member Registration Form
 4. ✅ 使用 Checkbox 元件建立興趣選擇
 5. 🎯 使用 Button 元件建立提交按鈕
 6. 🔄 使用 useState 管理表單狀態
+   ![1746025554139](image/Content/1746025554139.png)
 
 #### **提示 Hints**
 
 ```tsx
-"use client";
-import { Card } from "primereact/card";
-import { InputText } from "primereact/inputtext";
-import { RadioButton } from "primereact/radiobutton";
-import { Checkbox } from "primereact/checkbox";
-import { Button } from "primereact/button";
-import { useState } from "react";
+    // 表單狀態
+    const [formData, setFormData] = useState<FormData>({
+        name: '',
+        email: '',
+        password: '',
+        gender: '',
+        interests: []
+    });
 
-export default function RegistrationForm() {
-  // 使用 useState 管理表單狀態
-  // Use useState to manage form state
 
-  return (
-    <Card title="會員註冊" style={{ width: "25rem", marginBottom: "2em" }}>
-      {/* 表單內容 */}
-      {/* Form content */}
-    </Card>
-  );
-}
+    // 處理表單提交
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const formDataString =
+            "姓名: " + formData.name + "\n" +
+            "電子郵件: " + formData.email + "\n" +
+            "密碼: " + formData.password + "\n" +
+            "性別: " + formData.gender + "\n" +
+            "興趣: " + formData.interests.join(", ");
+        alert('表單資料: \n' + formDataString);
+    };
+
+
+
+                    <div className="flex flex-col gap-2">
+                        <label htmlFor="name">姓名</label>
+                        <InputText
+                            id="name"
+                            value={formData.name}
+                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        />
+                    </div>
+
+
+
+
+                    <div className="flex flex-col gap-2">
+                        <label htmlFor="password">密碼</label>
+                        <InputText
+                            id="password"
+                            type="password"
+                            value={formData.password}
+                            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                        />
+                    </div>
+
+                            <div className="flex items-center">
+                                <RadioButton
+                                    inputId="female"
+                                    name="gender"
+                                    value="female"
+                                    checked={formData.gender === 'female'}
+                                    onChange={(e) => setFormData({ ...formData, gender: e.value })}
+                                />
+                                <label htmlFor="female" className="ml-2">女性</label>
+                            </div>
+
+
+                            {/* reading */}
+                            <div className="flex items-center">
+                                <Checkbox inputId="reading" name="interests" value="reading"
+                                    checked={formData.interests.includes("reading")}
+                                    onChange={(e) => {
+                                        if (e.checked) {
+                                            // 勾選的情況 將選項加入陣列 if e.checked is true , add the value to the array
+                                            setFormData({ ...formData, interests: [...formData.interests, e.value] });
+                                        } else {
+                                            // 取消勾選的情況 將選項從陣列中移除 if e.checked is false , remove the value from the array
+                                            setFormData({ ...formData, interests: formData.interests.filter(item => item !== e.value) });
+                                        }
+                                    }}
+                                />
+                                <label htmlFor="reading" className="ml-2">reading</label>
+                            </div>
+
 ```
 
 ## 🎯 課程重點
