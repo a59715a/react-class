@@ -45,6 +45,7 @@ Development Environment Installation and Setup
 - TypeScript React code snippets
 - Tailwind CSS IntelliSense
 - Prettier - Code formatter
+- Office Viewer
 
   ![1745419079810](image/Content/1745419079810.png)
 
@@ -157,7 +158,7 @@ const name: string = "小明";
 let name: string = "小明";
 
 // 數字 Number
-const  age: number = 25;
+const age: number = 25;
 let age: number = 25;
 
 // 布林值 Boolean
@@ -179,7 +180,7 @@ interface Person {
 
 let person: Person = {
   name: "小明",
-  age: 25
+  age: 25,
 };
 ```
 
@@ -208,7 +209,6 @@ export default function Home() {
     </div>
   );
 }
-
 ```
 
 ![1745734117870](image/Content/1745734117870.png)
@@ -262,7 +262,6 @@ export default function Home() {
     </div>
   );
 }
-
 ```
 
 ![1745506016805](image/Content/1745506016805.png)
@@ -287,7 +286,6 @@ export default function Home() {
     </div>
   );
 }
-
 ```
 
 ![1745734315216](image/Content/1745734315216.png)
@@ -296,10 +294,9 @@ export default function Home() {
 
 React Event Handling
 
-補上CSS
-在 `src\app\layout.tsx` 貼上CSS
+補上 CSS
+在 `src\app\layout.tsx` 貼上 CSS
 Paste CSS in `src\app\layout.tsx`
-
 
 ```ts
 import "primereact/resources/themes/saga-blue/theme.css";
@@ -307,8 +304,7 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 ```
 
-
-修改 globals.css 
+修改 globals.css
 
 ```css
 /* @import "tailwindcss"; */
@@ -316,13 +312,7 @@ import "primeicons/primeicons.css";
 @layer theme, base, components, utilities;
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities);
-
 ```
-
-
-
-
-
 
 ![1745508940963](image/Content/1745508940963.png)
 
@@ -345,16 +335,15 @@ export default function Home() {
     </div>
   );
 }
-
 ```
 
 ![1745727213715](image/Content/1745727213715.png)
 
 #### **練習題目 Practice Tasks**
 
-1. 使用 **常數(或變數)渲染**  渲染出 `Hello World!`
+1. 使用 **常數(或變數)渲染** 渲染出 `Hello World!`
    Use **constant (or variable) rendering** to render `Hello World!`
-2. 寫一個  Funtion ，傳入參數 `小明`  渲染出 `小明 你好 !`
+2. 寫一個 Funtion ，傳入參數 `小明` 渲染出 `小明 你好 !`
    Write a Function that takes a parameter `John` and renders `Hello John`
 3. 寫一個按鈕，按下去會顯示 `新年快樂`
    Write a button that displays `Happy New Year` when clicked
@@ -364,13 +353,13 @@ export default function Home() {
 #### Hints
 
 ```ts
-    return (
-        <div className="container">
-            <h1>{strHello}</h1>
-            <h2>{returnHello("小明")}</h2>
-            <Button label="Click me  按下我" icon="pi pi-car" onClick={handleClick} />
-        </div>
-    );
+return (
+  <div className="container">
+    <h1>{strHello}</h1>
+    <h2>{returnHello("小明")}</h2>
+    <Button label="Click me  按下我" icon="pi pi-car" onClick={handleClick} />
+  </div>
+);
 ```
 
 #### **範例解答 Example Solution**
