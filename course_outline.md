@@ -66,6 +66,12 @@ While building your own components allows for complete customization, if you wan
 
 ---
 
+## 📁 專案結構 | Project Structure
+
+[📖 專案結構內容 | Project Structure Content](project_structure.md)
+
+---
+
 ## 📚 課程內容 | Course Content
 
 ### ✅ 第 1 週：React 開發環境與基礎語法初探
