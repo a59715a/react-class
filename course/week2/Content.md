@@ -126,7 +126,7 @@ export default function Counter() {
 
 #### **多個狀態管理 Multiple State Management**
 
-我們可以在一個組件中使用多個 useState。
+我們可以在一個組件中使用多個 useState。╣
 
 We can use multiple useState in one component.
 
@@ -289,7 +289,6 @@ export default function RadioButtonDemo() {
 Checkbox 元件用於多選功能。
 
 Checkbox component is used for multiple selection.
-
 
 ![1746024550318](image/Content/1746024550318.png)
 
