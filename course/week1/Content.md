@@ -247,10 +247,26 @@ JSX Syntax Introduction
 #### **基本 JSX 元素 Basic JSX Elements**
 
 ```tsx
-// 使用變數 Using Variables
+
+interface Person {
+  name: string;
+  age: number;
+}
+
+let person: Person = {
+  name: "小明",
+  age: 25,
+};
+
 function Greeting() {
   const name = "小明";
-  return <h2>你好，{name}！</h2>;
+  return (
+    <>
+      <h2>你好，{person.name}！</h2>
+      <h2>你好，{person.age}！</h2>
+
+    </>
+  );
 }
 
 export default function Home() {
@@ -262,6 +278,7 @@ export default function Home() {
     </div>
   );
 }
+
 ```
 
 ![1745506016805](image/Content/1745506016805.png)
