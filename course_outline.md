@@ -103,7 +103,13 @@ While building your own components allows for complete customization, if you wan
 #### 課程內容 | Course Content
 
 - 🧩 React 組件概念與 Props 傳遞
+  - 函數組件與類組件
+  - Props 的傳遞與使用
+  - 解構賦值與 props 參數寫法比較
 - 🔄 useState 基礎應用
+  - 狀態管理基礎
+  - 多個狀態管理
+- 🎯 實作會員註冊表單（使用各種 PrimeReact 元件）
 - 🎨 PrimeReact 基礎元件教學
   - Card 元件：標題、內容、頁尾設計
   - Button 元件：樣式、圖示、事件處理
@@ -111,13 +117,10 @@ While building your own components allows for complete customization, if you wan
   - FloatLabel 元件：浮動標籤效果
   - RadioButton 元件：單選功能、群組設定
   - Checkbox 元件：複選功能、狀態管理
-  - Dropdown 元件：選項設定、過濾功能、事件處理
 
 #### 練習內容 | Practice Content
 
-- 🎯 實作會員註冊表單（使用各種 PrimeReact 元件）
-- 🎯 建立商品卡片展示頁面（使用 Card 元件）
-- 🎯 設計問卷調查表單（使用 RadioButton、Checkbox、Dropdown）
+- 🎯 實作登入表單（使用各種 PrimeReact 元件）
 
 ---
 
@@ -129,15 +132,15 @@ While building your own components allows for complete customization, if you wan
 
 #### 課程內容 | Course Content
 
-- 📝 複雜狀態管理（多個 useState 整合）
-- ➕ 計算邏輯實作與錯誤處理
-- 🔄 資料轉換與格式化
-- 🎯 使用 PrimeReact 進階元件（InputNumber, ButtonGroup）
+- 📝 購物車-複雜狀態管理
+- 🧭 導覽列-使用 PrimeReact Menubar
+- ➕ 計算機-計算邏輯實作
+- 🔄 貨幣轉換器
+- 🎯 PrimeReact 進階元件-AutoComplete元件應用
 
 #### 練習內容 | Practice Content
 
-- 🎯 實作多功能計算機（加減乘除、記憶功能）
-- 🎯 使用 PrimeReact 元件建立專業計算機介面
+- 🎯 整合導覽列與各功能頁面 包含前面的登入頁面、註冊頁面、購物車頁面、計算機頁面、貨幣轉換器頁面
 
 ---
 
@@ -145,17 +148,18 @@ While building your own components allows for complete customization, if you wan
 
 ### ✅ Week 4: Data Processing and Dynamic Rendering
 
+[📖 詳細課程內容 | Detailed Course Content](course/week4/Content.md)
+
 #### 課程內容 | Course Content
 
-- 📊 資料結構設計與處理
-- 🔄 動態列表渲染與排序
-- 💰 貨幣轉換與格式化
-- 🎨 使用 PrimeReact 資料展示元件（DataTable, Card）
+- 📊 資料結構設計與處理(用靜態資料)
+- 🔄 列表渲染與排序(使用 DataTable 元件)
+- 🌐 認識WebAPI
+- 📡 呼叫WebAPI 並將資料結構化呈現
 
 #### 練習內容 | Practice Content
 
-- 🎯 實作貨幣轉換器（支援多種貨幣）
-- 🎯 使用 DataTable 展示轉換歷史記錄
+- 🎯 使用 DataTable 展示動態載入列表並操作
 
 ---
 

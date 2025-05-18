@@ -4,24 +4,26 @@ Week 3: Advanced State Management and Calculation Functions
 
 ## 📚 課程概述 Course Overview
 
-本週將深入探討 React 的進階狀態管理技巧，學習如何整合多個 useState，並實作複雜的計算功能。我們將從基礎的計算邏輯開始，逐步學習如何處理錯誤情況，並使用 PrimeReact 的進階元件來建立專業的計算機介面。
+本週將深入探討 React 的進階狀態管理技巧，學習如何整合多個 useState，並實作複雜的計算功能。我們將從購物車的複雜狀態管理開始，學習如何整合多個 useState；接著實作計算機的計算邏輯與錯誤處理；然後學習資料轉換與格式化，最後使用 PrimeReact 的進階元件來建立專業的介面。
 
-This week we will explore advanced state management techniques in React, learn how to integrate multiple useState, and implement complex calculation functions. We'll start with basic calculation logic, gradually learn how to handle error cases, and use PrimeReact's advanced components to create a professional calculator interface.
+This week we will explore advanced state management techniques in React, learn how to integrate multiple useState, and implement complex calculation functions. We'll start with complex state management in shopping carts, learning how to integrate multiple useState; then implement calculator logic and error handling; followed by data transformation and formatting, and finally use PrimeReact's advanced components to create professional interfaces.
 
 ## 📑 章節 Chapters
 
-1. 📝 複雜狀態管理（多個 useState 整合）
-   Complex State Management (Multiple useState Integration)
-2. ➕ 計算邏輯實作與錯誤處理
-   Calculation Logic Implementation and Error Handling
-3. 🔄 資料轉換與格式化
-   Data Transformation and Formatting
-4. 🎯 使用 PrimeReact 進階元件
+1. 📝 購物車-複雜狀態管理（多個 useState 整合）
+   Shopping Cart - Complex State Management (Multiple useState Integration)
+2. 🧭 導覽列-使用 PrimeReact Menubar
+   Navigation Bar - Using PrimeReact Menubar
+3. ➕ 計算機-計算邏輯實作與錯誤處理
+   Calculator - Calculation Logic Implementation and Error Handling
+4. 🔄 貨幣轉換器-資料轉換與格式化
+   Currency Converter - Data Transformation and Formatting
+5. 🎯 使用 PrimeReact 進階元件
    Using PrimeReact Advanced Components
 
 ## 📝 課程內容 Course Content
 
-### 1. 📝 複雜狀態管理（多個 useState 整合）
+### 1. 📝 購物車-複雜狀態管理（多個 useState 整合）
 
 Complex State Management (Multiple useState Integration)
 
@@ -111,9 +113,79 @@ export default function ShoppingCart() {
 
 ```
 
-### 2. ➕ 計算邏輯實作與錯誤處理
+### 2. 🧭 導覽列實作 Navigation Bar Implementation
 
-Calculation Logic Implementation and Error Handling
+使用 PrimeReact 的 Menubar 元件來建立一個專業的導覽列。
+
+Using PrimeReact's Menubar component to create a professional navigation bar.
+
+```tsx
+"use client";
+import { Menubar } from 'primereact/menubar';
+import { MenuItem } from 'primereact/menuitem';
+import { useRouter } from 'next/navigation';
+
+export default function Navbar() {
+    const router = useRouter();
+
+    const items: MenuItem[] = [
+        {
+            label: '首頁',
+            icon: 'pi pi-home',
+            command: () => router.push('/')
+        },
+        {
+            label: '購物車',
+            icon: 'pi pi-shopping-cart',
+            command: () => router.push('/cart')
+        },
+        {
+            label: '計算機',
+            icon: 'pi pi-calculator',
+            command: () => router.push('/calculator')
+        },
+        {
+            label: '貨幣轉換',
+            icon: 'pi pi-dollar',
+            command: () => router.push('/currency')
+        }
+    ];
+
+    return (
+        <div className="card">
+            <Menubar model={items} className="border-none shadow-2" />
+        </div>
+    );
+}
+```
+
+這個導覽列實作包含以下特點：
+
+This navigation bar implementation includes the following features:
+
+1. **使用 Menubar 元件**：提供專業的導覽列外觀和功能
+   Using Menubar component: Provides professional navigation bar appearance and functionality
+2. **整合路由功能**：使用 Next.js 的 `useRouter` 進行頁面導航
+   Integrated routing: Uses Next.js's `useRouter` for page navigation
+3. **圖示支援**：使用 PrimeIcons 為每個選項添加圖示
+   Icon support: Uses PrimeIcons to add icons to each option
+4. **響應式設計**：自動適應不同螢幕尺寸
+   Responsive design: Automatically adapts to different screen sizes
+
+要使用這個導覽列，需要：
+
+To use this navigation bar, you need to:
+
+1. 在 `app/layout.tsx` 中引入並使用
+   Import and use in `app/layout.tsx`
+2. 確保已安裝必要的依賴
+   Ensure necessary dependencies are installed
+3. 在 `globals.css` 中引入 PrimeReact 的樣式
+   Import PrimeReact styles in `globals.css`
+
+### 3. ➕ 計算機-計算邏輯實作與錯誤處理
+
+Calculator - Calculation Logic Implementation and Error Handling
 
 #### **基本計算功能 Basic Calculation Functions**
 
@@ -245,9 +317,9 @@ export default function Calculator() {
 
 ```
 
-### 3. 🔄 資料轉換與格式化
+### 4. 🔄 貨幣轉換器-資料轉換與格式化
 
-Data Transformation and Formatting
+Currency Converter - Data Transformation and Formatting
 
 #### **數字格式化 Number Formatting**
 
@@ -348,7 +420,7 @@ export default function CurrencyConverter() {
 
 ```
 
-### 4. 🎯 使用 PrimeReact 進階元件
+### 5. 🎯 使用 PrimeReact 進階元件
 
 Using PrimeReact Advanced Components
 
@@ -626,7 +698,7 @@ export default function MultipleDemo() {
     // 搜尋 依照輸入內容 過濾
     const search = (event: AutoCompleteCompleteEvent) => {
         let _filteredCountries;
-      
+  
         if (!event.query.trim().length) {
             // 如果輸入內容為空 則顯示所有國家
             _filteredCountries = [...countries];
@@ -716,3 +788,76 @@ Next Week Preview
 下週我們將學習資料處理與動態渲染，包括資料結構設計、動態列表渲染，以及使用 PrimeReact 的資料展示元件。
 
 Next week, we will learn about data processing and dynamic rendering, including data structure design, dynamic list rendering, and using PrimeReact's data display components.
+
+## 📝 課後練習：整合導覽列與各功能頁面
+
+### 練習目標
+
+建立一個整合所有功能的完整應用程式，包含以下功能：
+
+1. 🧭 導覽列實作
+2. 🔐 登入/註冊功能
+   - 整合第二週的登入頁面
+   - 整合第二週的註冊頁面
+3. 🛒 購物車功能
+4. 🧮 計算機功能
+5. 💱 貨幣轉換功能
+
+### 提示
+
+```tsx
+// 路由設定示例
+const items: MenuItem[] = [
+    {
+        label: '首頁',
+        icon: 'pi pi-home',
+        command: () => router.push('/')
+    },
+    {
+        label: '登入',
+        icon: 'pi pi-sign-in',
+        command: () => router.push('/login')
+    },
+    {
+        label: '註冊',
+        icon: 'pi pi-user-plus',
+        command: () => router.push('/register')
+    },
+    {
+        label: '購物車',
+        icon: 'pi pi-shopping-cart',
+        command: () => router.push('/cart')
+    },
+];
+```
+
+### 進階挑戰
+
+1. 🔐 身份驗證
+
+   - 實作登入狀態管理
+   - 未登入用戶限制訪問某些頁面
+   - 實作登出功能
+2. 🎨 UI/UX 優化
+
+   - 添加載入動畫
+   - 實作響應式設計
+   - 優化表單驗證提示
+3. 📱 行動裝置支援
+
+   - 優化行動裝置顯示
+   - 實作行動裝置選單
+   - 調整元件大小與間距
+4. 🔄 狀態管理
+
+   - 使用 Context API 管理全域狀態
+   - 實作購物車資料持久化
+   - 優化狀態更新邏輯
+
+## 📝 延伸閱讀
+
+1. 頁面驗證登入狀態的機制
+2. React Context API是什麼
+3. 響應式設計的實作技巧 Tailwind CSS 的響應式設計
+4. 試著做出自己喜歡的 css Class 讓每次使用元件時 可以直接套用
+5. 嘗試著將過去的功能做成Component  讓Page.tsx引用 讓同樣的元件可以重複使用
