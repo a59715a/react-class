@@ -258,6 +258,24 @@ export default function ProductCard() {
 #### **提示 Hints**
 
 ```tsx
+'use client';
+
+import { useState } from 'react';
+import { Card } from 'primereact/card';
+import { InputText } from 'primereact/inputtext';
+import { RadioButton } from 'primereact/radiobutton';
+import { Checkbox } from 'primereact/checkbox';
+import { Button } from 'primereact/button';
+
+interface FormData {
+    name: string; // 姓名
+    email: string; // 電子郵件
+    password: string; // 密碼
+    gender: string; // 性別
+    interests: string[]; // 興趣
+}
+
+export default function MemberForm() {
     // 表單狀態
     const [formData, setFormData] = useState<FormData>({
         name: '',
@@ -267,6 +285,12 @@ export default function ProductCard() {
         interests: []
     });
 
+    // 興趣選項
+    const interestOptions = [
+        'reading',
+        'sports',
+        'music',
+    ];
 
     // 處理表單提交
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -280,8 +304,10 @@ export default function ProductCard() {
         alert('表單資料: \n' + formDataString);
     };
 
-
-
+    return (
+        <div className="flex justify-center items-center min-h-screen">
+            <Card title="會員註冊" className="w-full max-w-md">
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     <div className="flex flex-col gap-2">
                         <label htmlFor="name">姓名</label>
                         <InputText
@@ -291,8 +317,15 @@ export default function ProductCard() {
                         />
                     </div>
 
-
-
+                    <div className="flex flex-col gap-2">
+                        <label htmlFor="email">電子郵件</label>
+                        <InputText
+                            id="email"
+                            type="email"
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        />
+                    </div>
 
                     <div className="flex flex-col gap-2">
                         <label htmlFor="password">密碼</label>
@@ -304,6 +337,19 @@ export default function ProductCard() {
                         />
                     </div>
 
+                    <div className="flex flex-col gap-2">
+                        <label>性別</label>
+                        <div className="flex gap-4">
+                            <div className="flex items-center">
+                                <RadioButton
+                                    inputId="male"
+                                    name="gender"
+                                    value="male"
+                                    checked={formData.gender === 'male'}
+                                    onChange={(e) => setFormData({ ...formData, gender: e.value })}
+                                />
+                                <label htmlFor="male" className="ml-2">男性</label>
+                            </div>
                             <div className="flex items-center">
                                 <RadioButton
                                     inputId="female"
@@ -314,8 +360,42 @@ export default function ProductCard() {
                                 />
                                 <label htmlFor="female" className="ml-2">女性</label>
                             </div>
+                        </div>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                        <label>興趣</label>
 
 
+
+                        <label>使用map</label>
+                        <div className="flex flex-wrap gap-4">
+                            {interestOptions.map((interest) => (
+                                <div key={interest} className="flex items-center">
+                                    <Checkbox
+                                        inputId={interest}
+                                        name="interests"
+                                        value={interest}
+                                        checked={formData.interests.includes(interest)}
+                                        onChange={(e) => {
+                                            if (e.checked) {
+                                                // 勾選的情況 將選項加入陣列 if e.checked is true , add the value to the array
+                                                setFormData({ ...formData, interests: [...formData.interests, e.value] });
+                                            } else {
+                                                // 取消勾選的情況 將選項從陣列中移除 if e.checked is false , remove the value from the array
+                                                setFormData({ ...formData, interests: formData.interests.filter(item => item !== e.value) });
+                                            }
+                                        }}
+                                    />
+                                    <label htmlFor={interest} className="ml-2">{interest}</label>
+                                </div>
+
+                            ))}
+                        </div>
+                        <label>不使用map</label>
+
+
+
+                        <div className="flex flex-wrap gap-4">
                             {/* reading */}
                             <div className="flex items-center">
                                 <Checkbox inputId="reading" name="interests" value="reading"
@@ -332,6 +412,49 @@ export default function ProductCard() {
                                 />
                                 <label htmlFor="reading" className="ml-2">reading</label>
                             </div>
+                            {/* sports */}
+                            <div className="flex items-center">
+                                <Checkbox inputId="sports" name="interests" value="sports"
+                                    checked={formData.interests.includes("sports")}
+                                    onChange={(e) => {
+                                        if (e.checked) {
+                                            // 勾選的情況 將選項加入陣列 if e.checked is true , add the value to the array
+                                            setFormData({ ...formData, interests: [...formData.interests, e.value] });
+                                        } else {
+                                            // 取消勾選的情況 將選項從陣列中移除 if e.checked is false , remove the value from the array
+                                            setFormData({ ...formData, interests: formData.interests.filter(item => item !== e.value) });
+                                        }
+                                    }}
+                                />
+                                <label htmlFor="sports" className="ml-2">sports</label>
+                            </div>
+                            {/* music */}
+                            <div className="flex items-center">
+                                <Checkbox inputId="music" name="interests" value="music"
+                                    checked={formData.interests.includes("music")}
+                                    onChange={(e) => {
+                                        if (e.checked) {
+                                            // 勾選的情況 將選項加入陣列 if e.checked is true , add the value to the array
+                                            setFormData({ ...formData, interests: [...formData.interests, e.value] });
+                                        } else {
+                                            // 取消勾選的情況 將選項從陣列中移除 if e.checked is false , remove the value from the array
+                                            setFormData({ ...formData, interests: formData.interests.filter(item => item !== e.value) });
+                                        }
+                                    }}
+                                />
+                                <label htmlFor="music" className="ml-2">music</label>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <Button type="submit" label="註冊" className="mt-4" />
+                </form>
+            </Card>
+        </div>
+    );
+}
 
 ```
 
