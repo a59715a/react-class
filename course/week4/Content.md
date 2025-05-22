@@ -10,10 +10,9 @@ This week we will explore data processing and dynamic rendering techniques in Re
 
 ## 📑 章節 Chapters
 
-1. 📊 資料結構設計與處理
-   Data Structure Design and Processing
-2. 🔄 列表渲染與排序
-   List Rendering and Sorting
+1. 📊 資料結構設計與處理、列表渲染與排序
+   Data Structure Design and Processing 、List Rendering and Sorting
+2. 🔄
 3. 🌐 認識 Web API
    Understanding Web API
 4. 📡 呼叫 Web API 並將資料結構化呈現
@@ -208,12 +207,7 @@ export default function UserList() {
    - 分頁資訊顯示
    - 欄位寬度控制
 
-### 2. 🔄 列表渲染與排序
-
-List Rendering and Sorting
-
-
-### 3. 🌐 認識 Web API
+### 2. 🌐 認識 Web API
 
 Understanding Web API
 
@@ -287,7 +281,7 @@ export default function PostList() {
 }
 ```
 
-### 4. 📡 呼叫 Web API 並將資料結構化呈現
+### 3. 📡 呼叫 Web API 並將資料結構化呈現
 
 Calling Web API and Structured Data Presentation
 
@@ -520,7 +514,6 @@ const fetchData = async () => {
 1. RESTful API 設計原則
 2. React Query 的使用方法
 3. 進階資料表格功能實作
-
 
 ![1747580684081](image/Content/1747580684081.png)
 

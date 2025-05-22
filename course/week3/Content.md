@@ -33,6 +33,19 @@ Complex State Management (Multiple useState Integration)
 
 In real applications, we often need to manage multiple related states. Let's see how to effectively integrate these states.
 
+使用 PrimeReact 的 InputNumber 元件來實現購物車的計算功能。
+Use PrimeReact's InputNumber component to implement the calculation function of the shopping cart.
+
+[https://primereact.org/inputnumber/](https://primereact.org/inputnumber/)
+
+1. 使用 value 屬性來設定輸入的值 例如 value={product.quantity}
+2. 使用 onValueChange 屬性來設定輸入的值變更事件 例如 onValueChange={(e) => updateQuantity(product.id, e.value || 0)}
+3. 使用 showButtons 屬性來設定輸入的值是否顯示加減按鈕 例如 showButtons={true}
+4. 使用 min 屬性來設定輸入的值的最小值 例如 min={0}
+5. 使用 max 屬性來設定輸入的值的最大值 例如 max={10}
+
+   **請做出自動計算**
+
 ![1746718543168](image/Content/1746718543168.png)
 
 ```tsx
@@ -128,6 +141,28 @@ Using PrimeReact's Menubar component to create a professional navigation bar.
 4. 使用 icon 屬性來設定選項的圖示
 5. 使用 label 屬性來設定選項的文字
 
+這個導覽列實作包含以下特點：
+
+This navigation bar implementation includes the following features:
+
+1. **使用 Menubar 元件**：提供專業的導覽列外觀和功能
+   Using Menubar component: Provides professional navigation bar appearance and functionality
+2. **整合路由功能**：使用 Next.js 的 `useRouter` 進行頁面導航
+   Integrated routing: Uses Next.js's `useRouter` for page navigation
+3. **圖示支援**：使用 PrimeIcons 為每個選項添加圖示
+   Icon support: Uses PrimeIcons to add icons to each option
+
+要使用這個導覽列，需要：
+
+To use this navigation bar, you need to:
+
+1. 在 `app/layout.tsx` 中引入並使用
+   Import and use in `app/layout.tsx`
+2. 確保已安裝必要的依賴
+   Ensure necessary dependencies are installed
+3. 在 `globals.css` 中引入 PrimeReact 的樣式
+   Import PrimeReact styles in `globals.css`
+
 ```tsx
 "use client";
 import { Menubar } from 'primereact/menubar';
@@ -148,49 +183,15 @@ export default function Navbar() {
             icon: 'pi pi-shopping-cart',
             command: () => router.push('/cart')
         },
-        {
-            label: '計算機',
-            icon: 'pi pi-calculator',
-            command: () => router.push('/calculator')
-        },
-        {
-            label: '貨幣轉換',
-            icon: 'pi pi-dollar',
-            command: () => router.push('/currency')
-        }
     ];
 
     return (
         <div className="card">
-            <Menubar model={items} className="border-none shadow-2" />
+            <Menubar model={items}  />
         </div>
     );
 }
 ```
-
-這個導覽列實作包含以下特點：
-
-This navigation bar implementation includes the following features:
-
-1. **使用 Menubar 元件**：提供專業的導覽列外觀和功能
-   Using Menubar component: Provides professional navigation bar appearance and functionality
-2. **整合路由功能**：使用 Next.js 的 `useRouter` 進行頁面導航
-   Integrated routing: Uses Next.js's `useRouter` for page navigation
-3. **圖示支援**：使用 PrimeIcons 為每個選項添加圖示
-   Icon support: Uses PrimeIcons to add icons to each option
-4. **響應式設計**：自動適應不同螢幕尺寸
-   Responsive design: Automatically adapts to different screen sizes
-
-要使用這個導覽列，需要：
-
-To use this navigation bar, you need to:
-
-1. 在 `app/layout.tsx` 中引入並使用
-   Import and use in `app/layout.tsx`
-2. 確保已安裝必要的依賴
-   Ensure necessary dependencies are installed
-3. 在 `globals.css` 中引入 PrimeReact 的樣式
-   Import PrimeReact styles in `globals.css`
 
 ### 3. ➕ 計算機-計算邏輯實作與錯誤處理
 
@@ -208,6 +209,17 @@ Let's implement a calculator with basic calculation functions.
 1. 使用 InputNumber 元件來實現數字輸入
 2. 使用 Dropdown 元件來實現運算符號選擇
 3. 使用 Message 元件來實現錯誤訊息顯示
+4. 此處用了我推薦的CSS 賦予方式  讓大家可以直接套用 請參考OutSideCss、containerCss
+   ```
+     // 最外側容器CSS
+     const OutSideCss = "flex flex-row flex-wrap items-center justify-start whitespace-nowrap gap-2";
+     // 容器CSS
+     const containerCss = "flex gap-8 items-center";
+   ```
+
+![1747924922496](image/Content/1747924922496.png)
+
+**請實作出  減法、乘法**
 
 ```tsx
 "use client";
@@ -237,8 +249,6 @@ export default function Calculator() {
 
   const operations = [
     { label: "+", value: "+" },
-    { label: "-", value: "-" },
-    { label: "×", value: "*" },
     { label: "÷", value: "/" },
   ];
 
@@ -248,12 +258,6 @@ export default function Calculator() {
       switch (calculatorState.operation) {
         case "+":
           result = calculatorState.firstNumber + calculatorState.secondNumber;
-          break;
-        case "-":
-          result = calculatorState.firstNumber - calculatorState.secondNumber;
-          break;
-        case "*":
-          result = calculatorState.firstNumber * calculatorState.secondNumber;
           break;
         case "/":
           if (calculatorState.secondNumber === 0) {
@@ -270,11 +274,17 @@ export default function Calculator() {
       });
     }
   };
+  // 大容器CSS
+  // 最外側容器CSS
+  const OutSideCss =
+    "flex flex-row flex-wrap items-center justify-start whitespace-nowrap gap-2";
+  // 容器CSS
+  const containerCss = "flex gap-8 items-center";
 
   return (
-    <Card title="基本計算機" className="w-25rem">
-      <div className="flex flex-column gap-2">
-        <div className="flex flex-column gap-2">
+    <Card title="基本計算機">
+      <div className={OutSideCss}>
+        <div className={containerCss}>
           <label htmlFor="firstNumber">第一個數字</label>
           <InputNumber
             id="firstNumber"
@@ -288,7 +298,7 @@ export default function Calculator() {
           />
         </div>
 
-        <div className="flex flex-column gap-2">
+        <div className={containerCss}>
           <label htmlFor="operation">運算符號</label>
           <Dropdown
             id="operation"
@@ -301,7 +311,7 @@ export default function Calculator() {
           />
         </div>
 
-        <div className="flex flex-column gap-2">
+        <div className={containerCss}>
           <label htmlFor="secondNumber">第二個數字</label>
           <InputNumber
             id="secondNumber"
@@ -349,6 +359,8 @@ Use PrimeReact's InputNumber component to implement number formatting.
 5. currency 屬性來設定數字輸入的貨幣符號 例如 currency="TWD"
 6. minFractionDigits 屬性來設定數字輸入的最小小數位數 例如 minFractionDigits={2}
 7. maxFractionDigits 屬性來設定數字輸入的最大小數位數 例如 maxFractionDigits={2}
+
+**請做出另外2種貨幣**
 
 ![1746718596984](image/Content/1746718596984.png)
 
@@ -453,11 +465,12 @@ AutoComplete 是一個輸入元件，可以在輸入時提供即時建議。它�
 
 AutoComplete is an input component that provides real-time suggestions while being typed. It supports various features including basic search, object search, grouped options, and more.
 [https://primereact.org/autocomplete/](https://primereact.org/autocomplete/)
+
 1. 使用 AutoComplete 元件來實現自動完成功能
 2. 使用 value 屬性來設定輸入的值 例如 value={selectedCountry}
 3. 使用 field 屬性來設定輸入的值的屬性 例如 field="name"
 4. 使用 multiple 屬性來設定輸入的值是否可以多選 例如 multiple={true}
-5. 使用 dropdown 屬性來設定輸入的值是否可以下拉選擇 預設寫了就是 true 
+5. 使用 dropdown 屬性來設定輸入的值是否可以下拉選擇 預設寫了就是 true
 6. 使用 onChange 屬性來設定輸入的值變更事件 例如 onChange={(e) => setSelectedCountry(e.value)}
 7. 使用 suggestions 屬性來設定輸入的建議選項 例如 suggestions={filteredCountries}
 8. 使用 completeMethod 屬性來設定輸入的建議選項方法 例如 completeMethod={search}
@@ -832,36 +845,40 @@ Next week, we will learn about data processing and dynamic rendering, including 
 2. 🔐 登入/註冊功能
    - 整合第二週的登入頁面
    - 整合第二週的註冊頁面
-3. 🛒 購物車功能
-4. 🧮 計算機功能
-5. 💱 貨幣轉換功能
+3. 🛒 購物車功能  (包含自動計算)
+4. 🧮 計算機功能(包含加減乘除)
+5. 💱 貨幣轉換功能(共有6種貨幣)
 
 ### 提示
 
 ```tsx
-// 路由設定示例
-const items: MenuItem[] = [
-    {
-        label: '首頁',
-        icon: 'pi pi-home',
-        command: () => router.push('/')
-    },
-    {
-        label: '登入',
-        icon: 'pi pi-sign-in',
-        command: () => router.push('/login')
-    },
-    {
-        label: '註冊',
-        icon: 'pi pi-user-plus',
-        command: () => router.push('/register')
-    },
-    {
-        label: '購物車',
-        icon: 'pi pi-shopping-cart',
-        command: () => router.push('/cart')
-    },
-];
+"use client";
+import { Menubar } from 'primereact/menubar';
+import { useRouter } from 'next/navigation';
+
+export default function Navbar() {
+    const router = useRouter();
+
+    const items: MenuItem[] = [
+        {
+            label: '首頁',
+            icon: 'pi pi-home',
+            command: () => router.push('/')
+        },
+        {
+            label: '購物車',
+            icon: 'pi pi-shopping-cart',
+            command: () => router.push('/cart')
+        },
+    ];
+
+    return (
+        <div className="card">
+            <Menubar model={items}  />
+        </div>
+    );
+}
+
 ```
 
 ### 進階挑戰
@@ -883,7 +900,7 @@ const items: MenuItem[] = [
    - 調整元件大小與間距
 4. 🔄 狀態管理
 
-   - 使用 Context API 管理全域狀態
+   - 使用 Context API 管理全域狀態(讓使用者姓名一直存在  並且是用登入換面傳入的資料進行渲染)
    - 實作購物車資料持久化
    - 優化狀態更新邏輯
 
