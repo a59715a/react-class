@@ -119,6 +119,15 @@ export default function ShoppingCart() {
 
 Using PrimeReact's Menubar component to create a professional navigation bar.
 
+[https://primereact.org/menubar/](https://primereact.org/menubar/)
+[https://primereact.org/icons/](https://primereact.org/icons/)
+
+1. 使用 model 屬性來設定導覽列的選項
+2. 宣告一個 MenuItem 陣列，用來設定導覽列的選項
+3. 使用 command 屬性來設定選項的點擊事件
+4. 使用 icon 屬性來設定選項的圖示
+5. 使用 label 屬性來設定選項的文字
+
 ```tsx
 "use client";
 import { Menubar } from 'primereact/menubar';
@@ -192,8 +201,13 @@ Calculator - Calculation Logic Implementation and Error Handling
 讓我們實作一個具有基本計算功能的計算機。
 
 Let's implement a calculator with basic calculation functions.
+[https://primereact.org/inputnumber/](https://primereact.org/inputnumber/)
+[https://primereact.org/dropdown/](https://primereact.org/dropdown/)
+[https://primereact.org/message/](https://primereact.org/message/)
 
-![1746712433356](https://file+.vscode-resource.vscode-cdn.net/f%3A/GitHub/react-class/course/week3/image/Content/1746712433356.png)
+1. 使用 InputNumber 元件來實現數字輸入
+2. 使用 Dropdown 元件來實現運算符號選擇
+3. 使用 Message 元件來實現錯誤訊息顯示
 
 ```tsx
 "use client";
@@ -326,6 +340,15 @@ Currency Converter - Data Transformation and Formatting
 使用 PrimeReact 的 InputNumber 元件來實現數字格式化。
 
 Use PrimeReact's InputNumber component to implement number formatting.
+[https://primereact.org/inputnumber/](https://primereact.org/inputnumber/)
+
+1. 使用 InputNumber 元件來實現數字輸入
+2. value 屬性來設定數字輸入的值 例如 value={amount}
+3. onValueChange 屬性來設定數字輸入的值變更事件 例如 onValueChange={(e) => setAmount(e.value || 0)}
+4. mode 屬性來設定數字輸入的格式 例如 mode="currency"
+5. currency 屬性來設定數字輸入的貨幣符號 例如 currency="TWD"
+6. minFractionDigits 屬性來設定數字輸入的最小小數位數 例如 minFractionDigits={2}
+7. maxFractionDigits 屬性來設定數字輸入的最大小數位數 例如 maxFractionDigits={2}
 
 ![1746718596984](image/Content/1746718596984.png)
 
@@ -429,6 +452,16 @@ Using PrimeReact Advanced Components
 AutoComplete 是一個輸入元件，可以在輸入時提供即時建議。它支援多種功能，包括基本搜尋、物件搜尋、分組選項等。
 
 AutoComplete is an input component that provides real-time suggestions while being typed. It supports various features including basic search, object search, grouped options, and more.
+[https://primereact.org/autocomplete/](https://primereact.org/autocomplete/)
+1. 使用 AutoComplete 元件來實現自動完成功能
+2. 使用 value 屬性來設定輸入的值 例如 value={selectedCountry}
+3. 使用 field 屬性來設定輸入的值的屬性 例如 field="name"
+4. 使用 multiple 屬性來設定輸入的值是否可以多選 例如 multiple={true}
+5. 使用 dropdown 屬性來設定輸入的值是否可以下拉選擇 預設寫了就是 true 
+6. 使用 onChange 屬性來設定輸入的值變更事件 例如 onChange={(e) => setSelectedCountry(e.value)}
+7. 使用 suggestions 屬性來設定輸入的建議選項 例如 suggestions={filteredCountries}
+8. 使用 completeMethod 屬性來設定輸入的建議選項方法 例如 completeMethod={search}
+9. 使用 onComplete 屬性來設定輸入的建議選項方法 例如 onComplete={(e) => setSelectedCountries(e.query)}
 
 ![1746718684745](image/Content/1746718684745.png)
 
