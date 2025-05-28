@@ -4,11 +4,11 @@
 
 可參考 [https://project10543024.hlddian.com/goal](https://project10543024.hlddian.com/goal)
 
-![1748182333005](course/week4/image/Content/1748182333005.png)
+![1748182333005](course/goal1/image/Content/1748182333005.png)
 
 檔案結構如下：
 
-![1748177654758](course/week4/image/Content/1748177654758.png)
+![1748177654758](course/goal1/image/Content/1748177654758.png)
 
 ## 📚 課程範例
 
