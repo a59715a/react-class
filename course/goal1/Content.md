@@ -546,64 +546,8 @@ export default function LoginForm() {
 
         </div>
     );
-  };
-
-  return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <Card className="w-96" title="登入">
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <label htmlFor="email" className="block font-medium text-gray-700">
-              Email
-            </label>
-            <InputText
-              id="email"
-              value={formData.email}
-              onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
-              }
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <div className="space-y-2">
-            <label
-              htmlFor="password"
-              className="block font-medium text-gray-700"
-            >
-              密碼
-            </label>
-            <InputText
-              id="password"
-              type="password"
-              value={formData.password}
-              onChange={(e) =>
-                setFormData({ ...formData, password: e.target.value })
-              }
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <div className="flex items-center">
-            <Checkbox
-              inputId="rememberMe"
-              checked={formData.rememberMe}
-              onChange={(e) =>
-                setFormData({ ...formData, rememberMe: e.checked ?? false })
-              }
-            />
-            <label htmlFor="rememberMe" className="ml-2 text-gray-700">
-              記住我
-            </label>
-          </div>
-          <Button
-            label="登入"
-            type="submit"
-            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200"
-          />
-        </form>
-      </Card>
-    </div>
-  );
 }
+
 ```
 
 #### 📝 CSS 單位說明
@@ -685,7 +629,6 @@ DataTable 元件
 1. **引入必要元件**
 
    - 引入 DataTable 和 Column 元件
-
 2. **資料綁定**
 
    - 使用 `value` 屬性設定資料來源
@@ -698,17 +641,14 @@ DataTable 元件
    - `paginator`：啟用分頁功能
    - `rows`：設定每頁顯示筆數
    - 例如：`rows={5}`
-
 2. **分頁選項**
 
    - `rowsPerPageOptions`：設定每頁顯示筆數選項
    - 例如：`rowsPerPageOptions={[5, 10, 25, 50]}`
-
 3. **分頁模板**
 
    - `paginatorTemplate`：設定分頁按鈕
    - 例如：`paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"`
-
 4. **分頁顯示格式**
 
    - `currentPageReportTemplate`：設定分頁資訊顯示格式
@@ -727,7 +667,6 @@ DataTable 元件
    - `header`：設定欄位標題
    - `sortable`：啟用排序功能
    - `className`：設定欄位寬度
-
 2. **範例**
 
 ```tsx
@@ -908,22 +847,22 @@ import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 
 interface Product {
-  id: number;
-  name: string;
-  price: number;
-  quantity: number;
+    id: number;
+    name: string;
+    price: number;
+    quantity: number;
 }
 
 export default function ShoppingCart() {
-  // 商品列表狀態
-  const [products, setProducts] = useState<Product[]>([
-    { id: 1, name: "商品 A", price: 100, quantity: 0 },
-    { id: 2, name: "商品 B", price: 200, quantity: 0 },
-    { id: 3, name: "商品 C", price: 300, quantity: 0 },
-  ]);
+    // 商品列表狀態
+    const [products, setProducts] = useState<Product[]>([
+        { id: 1, name: "商品 A", price: 100, quantity: 0 },
+        { id: 2, name: "商品 B", price: 200, quantity: 0 },
+        { id: 3, name: "商品 C", price: 300, quantity: 0 },
+    ]);
 
-  // 總金額狀態
-  const [total, setTotal] = useState<number>(0);
+    // 總金額狀態
+    const [total, setTotal] = useState<number>(0);
 
     // 更新商品數量
     const updateQuantity = (id: number, quantity: number) => {
@@ -1071,64 +1010,6 @@ export default function ShoppingCart() {
             </div>
         </Card>
     );
-  };
-
-  // 計算總金額
-  const calculateTotal = () => {
-    let sum = 0; // 用來累加總金額
-    for (const product of products) {
-      sum += product.price * product.quantity;
-    }
-    setTotal(sum); // 設定總金額
-  };
-
-  return (
-    <Card title="購物車" className="shadow-lg rounded-xl bg-slate-50">
-      <div className="flex flex-col overflow-x-auto">
-        {/* 標題列 */}
-        <div className="flex flex-row items-center font-bold text-base border-b py-2 bg-gray-100">
-          <div className="flex-1 text-left pl-2">商品名稱</div>
-          <div className="flex-1 text-blue-700 text-center">單價</div>
-          <div className="flex-1 text-center">數量</div>
-          <div className="flex-1 text-green-700 text-center">小計</div>
-        </div>
-        {products.map((product) => (
-          <div
-            key={product.id}
-            className="flex flex-row items-center rounded-lg shadow mb-2 bg-white gap-2 p-2"
-          >
-            <div className="flex-1 font-bold">{product.name}</div>
-            <div className="flex-1 text-blue-600 text-center">
-              ${product.price}
-            </div>
-            <div className="flex-1 flex justify-center">
-              <InputNumber
-                value={product.quantity}
-                onValueChange={(e) => updateQuantity(product.id, e.value || 0)}
-                showButtons
-                min={0}
-                max={10}
-                className="w-20"
-              />
-            </div>
-            <div className="flex-1 text-green-600 font-semibold text-center">
-              小計: ${product.price * product.quantity}
-            </div>
-          </div>
-        ))}
-        <div className="flex flex-col items-center mt-6 gap-3">
-          <Button
-            label="計算總金額"
-            onClick={calculateTotal}
-            className="rounded-full px-8 py-3 text-lg bg-blue-500 hover:bg-blue-600 text-white font-semibold shadow"
-          />
-          <div className="text-2xl font-bold text-green-600">
-            總金額: ${total}
-          </div>
-        </div>
-      </div>
-    </Card>
-  );
 }
 
 ```
