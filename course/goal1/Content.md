@@ -371,192 +371,192 @@ import { Button } from "primereact/button";
 
 // 宣告一個 FormDataIF 介面，裡面有 email, password, rememberMe 屬性 用於存放 表單資料
 interface FormDataIF {
-    email: string; // 帳號
-    password: string; // 密碼
-    rememberMe: boolean; // 記住我
+  email: string; // 帳號
+  password: string; // 密碼
+  rememberMe: boolean; // 記住我
 }
 // 宣告一個 UserInfoIF 介面，裡面有 name, email, password, gender 屬性 用於顯示 使用者資訊
 interface UserInfoIF {
-    name: string; // 姓名
-    email: string; // 電子郵件
-    password: string; // 密碼
-    gender: string; // 性別
+  name: string; // 姓名
+  email: string; // 電子郵件
+  password: string; // 密碼
+  gender: string; // 性別
 }
 
 // 宣告一個 service 物件，裡面有 getUserInfo 方法  若是有串後端API 則在此處串接
-const service = {
-    getUserInfo: (email: string, password: string): UserInfoIF | null => {
-        if (email === "test@test.com" && password === "123456") {
-            return {
-                email: "test@test.com",
-                password: "123456",
-                name: "測試人名",
-                gender: "男性",
-            };
-        }
-        return null;
-    },
+const authService = {
+  login: (email: string, password: string): UserInfoIF | undefined => {
+    if (email === "test@test.com" && password === "123456") {
+      return {
+        email: "test@test.com",
+        password: "123456",
+        name: "測試人名",
+        gender: "男性",
+      };
+    }
+    return undefined;
+  },
 };
 
 export default function LoginForm() {
 
-    // 宣告一個 formData 變數，用於存放 表單資料
-    const [formData, setFormData] = useState<FormDataIF>({
-        email: "",
-        password: "",
-        rememberMe: false,
-    });
+  // 宣告一個 formData 變數，用於存放 表單資料
+  const [formData, setFormData] = useState<FormDataIF>({
+    email: "",
+    password: "",
+    rememberMe: false,
+  });
 
-    // 宣告一個 userInfo 變數，用於存放 登入後使用者資訊
-    const [userInfo, setUserInfo] = useState<UserInfoIF | undefined>(undefined);
+  // 宣告一個 userInfo 變數，用於存放 登入後使用者資訊
+  const [userInfo, setUserInfo] = useState<UserInfoIF | undefined>(undefined);
 
-    // 宣告一個 isInfoVisible 變數，用於控制 使用者資訊是否顯示
-    const [isInfoVisible, setIsInfoVisible] = useState<boolean>(false);
+  // 宣告一個 isInfoVisible 變數，用於控制 使用者資訊是否顯示
+  const [isInfoVisible, setIsInfoVisible] = useState<boolean>(false);
 
-    // 宣告一個 error 變數，用於存放 錯誤訊息
-    const [error, setError] = useState<string | undefined>(undefined);
+  // 宣告一個 error 變數，用於存放 錯誤訊息
+  const [error, setError] = useState<string | undefined>(undefined);
 
-    // 宣告一個 handleLogin 方法，用於處理 登入
-    const handleLogin = () => {
-        // 呼叫 service 物件的 getUserInfo 方法，並將 formData 的 email 和 password 傳入
-        const resultUserInfo = service.getUserInfo(formData.email, formData.password);
-        // 如果 resultUserInfo 有值
-        if (resultUserInfo) {
-            // 將 resultUserInfo 的值設定給 userInfo 變數
-            setUserInfo(resultUserInfo);
-            // 將 isInfoVisible 設為 true
-            setIsInfoVisible(true);
-            // 將 error 設為 undefined
-            setError(undefined);
-        }
-        // 如果 resultUserInfo 沒有值
-        else {
-            // 將 isInfoVisible 設為 false
-            setIsInfoVisible(false);
-            // 將 error 設為 "帳號或密碼錯誤"
-            setError("帳號或密碼錯誤");
-        }
-    };
-
-
-
-    // 宣告一個css 變數 ： 垂直排列  水平(副軸)靠左 各元件間距 間距為 0.5rem
-    const cssUserInfoItem = 'flex flex-col items-start gap-2 ';
+  // 宣告一個 handleLogin 方法，用於處理 登入
+  const handleLogin = () => {
+    // 呼叫 service 物件的 getUserInfo 方法，並將 formData 的 email 和 password 傳入
+    const resultUserInfo = authService.login(formData.email, formData.password);
+    // 如果 resultUserInfo 有值
+    if (resultUserInfo) {
+      // 將 resultUserInfo 的值設定給 userInfo 變數
+      setUserInfo(resultUserInfo);
+      // 將 isInfoVisible 設為 true
+      setIsInfoVisible(true);
+      // 將 error 設為 undefined
+      setError(undefined);
+    }
+    // 如果 resultUserInfo 沒有值
+    else {
+      // 將 isInfoVisible 設為 false
+      setIsInfoVisible(false);
+      // 將 error 設為 "帳號或密碼錯誤"
+      setError("帳號或密碼錯誤");
+    }
+  };
 
 
-    return (
-        <div className="flex justify-center items-center h-full bg-gray-100 gap-4">
-            <Card className="w-96" title="登入">
-                <div className="space-y-4">
-                    {/* tip */}
-                    <p className="text-gray-500">
-                        帳號: test@test.com
-                        <br />
-                        密碼: 123456
-                    </p>
-                    <div className="space-y-2">
-                        <label
-                            htmlFor="email"
-                            className="block font-medium text-gray-700"
-                        >
-                            Email
-                        </label>
-                        <InputText
-                            id="email"
-                            value={formData.email}
-                            onChange={(e) =>
-                                setFormData({ ...formData, email: e.target.value })
-                            }
-                            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
-                    </div>
-                    <div className="space-y-2">
-                        <label
-                            htmlFor="password"
-                            className="block font-medium text-gray-700"
-                        >
-                            密碼
-                        </label>
-                        <InputText
-                            id="password"
-                            type="password"
-                            value={formData.password}
-                            onChange={(e) =>
-                                setFormData({ ...formData, password: e.target.value })
-                            }
-                            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <div>
-                            <Checkbox
-                                inputId="rememberMe"
-                                checked={formData.rememberMe}
-                                onChange={(e) =>
-                                    setFormData({ ...formData, rememberMe: e.checked ?? false })
-                                }
-                            />
-                            <label htmlFor="rememberMe" className="ml-2 text-gray-700">
-                                記住我
-                            </label>
-                        </div>
-                        {error &&
-                            <p id='error' className="text-red-500">
-                                {error}
-                            </p>
-                        }
-                    </div>
-                    <Button
-                        label="登入"
-                        type="submit"
-                        className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200"
-                        onClick={handleLogin}
-                    />
-                </div>
-            </Card>
 
-            <Card title="使用者資訊" className={`w-96 ${isInfoVisible ? '' : 'hidden'}`}>
-                <div className="flex flex-col gap-4 ">
-                    <div className={`${cssUserInfoItem}`}>
-                        <label htmlFor="email" className="font-medium">Email:</label>
-                        <div className="p-2 bg-gray-100 rounded">
-                            {userInfo?.email}
-                        </div>
-                    </div>
-                    <div className={`${cssUserInfoItem}`}>
-                        <label htmlFor="password" className="font-medium">密碼:</label>
-                        <div className="p-2 bg-gray-100 rounded">
-                            {userInfo?.password}
-                        </div>
-                    </div>
-                    <div className={`${cssUserInfoItem}`}>
-                        <label htmlFor="name" className="font-medium">姓名:</label>
-                        <div className="p-2 bg-gray-100 rounded">
-                            {userInfo?.name}
-                        </div>
-                    </div>
-                    <div className={`${cssUserInfoItem}`}>
-                        <label htmlFor="gender" className="font-medium">性別:</label>
-                        <div className="p-2 bg-gray-100 rounded">
-                            {userInfo?.gender}
-                        </div>
-                    </div>
-                </div>
-            </Card>
+  // 宣告一個css 變數 ： 垂直排列  水平(副軸)靠左 各元件間距 間距為 0.5rem
+  const cssUserInfoItem = 'flex flex-col items-start gap-2 ';
 
+
+  return (
+    <div className="flex justify-center items-center h-full bg-gray-100 gap-4">
+      <Card className="w-96" title="登入">
+        <div className="space-y-4">
+          {/* tip */}
+          <p className="text-gray-500">
+            帳號: test@test.com
+            <br />
+            密碼: 123456
+          </p>
+          <div className="space-y-2">
+            <label
+              htmlFor="email"
+              className="block font-medium text-gray-700"
+            >
+              Email
+            </label>
+            <InputText
+              id="email"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
+              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div className="space-y-2">
+            <label
+              htmlFor="password"
+              className="block font-medium text-gray-700"
+            >
+              密碼
+            </label>
+            <InputText
+              id="password"
+              type="password"
+              value={formData.password}
+              onChange={(e) =>
+                setFormData({ ...formData, password: e.target.value })
+              }
+              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div className="flex items-center gap-2">
+            <div>
+              <Checkbox
+                inputId="rememberMe"
+                checked={formData.rememberMe}
+                onChange={(e) =>
+                  setFormData({ ...formData, rememberMe: e.checked ?? false })
+                }
+              />
+              <label htmlFor="rememberMe" className="ml-2 text-gray-700">
+                記住我
+              </label>
+            </div>
+            {error &&
+              <p id='error' className="text-red-500">
+                {error}
+              </p>
+            }
+          </div>
+          <Button
+            label="登入"
+            type="submit"
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200"
+            onClick={handleLogin}
+          />
         </div>
-    );
+      </Card>
+
+      <Card title="使用者資訊" className={`w-96 ${isInfoVisible ? '' : 'hidden'}`}>
+        <div className="flex flex-col gap-4 ">
+          <div className={`${cssUserInfoItem}`}>
+            <label htmlFor="email" className="font-medium">Email:</label>
+            <div className="p-2 bg-gray-100 rounded">
+              {userInfo?.email}
+            </div>
+          </div>
+          <div className={`${cssUserInfoItem}`}>
+            <label htmlFor="password" className="font-medium">密碼:</label>
+            <div className="p-2 bg-gray-100 rounded">
+              {userInfo?.password}
+            </div>
+          </div>
+          <div className={`${cssUserInfoItem}`}>
+            <label htmlFor="name" className="font-medium">姓名:</label>
+            <div className="p-2 bg-gray-100 rounded">
+              {userInfo?.name}
+            </div>
+          </div>
+          <div className={`${cssUserInfoItem}`}>
+            <label htmlFor="gender" className="font-medium">性別:</label>
+            <div className="p-2 bg-gray-100 rounded">
+              {userInfo?.gender}
+            </div>
+          </div>
+        </div>
+      </Card>
+
+    </div>
+  );
 }
 
 ```
 
 #### 📝 CSS 單位說明
 
-| 單位  | 基準來源           | 是否會累加 | 用途建議               | 表示方式 | 實際大小（預設字體為 16px 時） |
-| ----- | ------------------ | ---------- | ---------------------- | -------- | ------------------------------ |
-| `px`  | 固定像素           | ❌ 不會累加 | 精確控制、邊框、圖片等 | `8px`    | 8px                            |
-| `em`  | 父元素的字體大小   | ✅ 會累加   | 區塊內比例控制         | `0.5em`  | 0.5 × 父元素字體大小           |
-| `rem` | 根元素（`<html>`） | ❌ 不會累加 | 響應式、整體一致性設計 | `0.5rem` | 0.5 × 16px =**8px**            |
+| 單位    | 基準來源             | 是否會累加  | 用途建議               | 表示方式   | 實際大小（預設字體為 16px 時） |
+| ------- | -------------------- | ----------- | ---------------------- | ---------- | ------------------------------ |
+| `px`  | 固定像素             | ❌ 不會累加 | 精確控制、邊框、圖片等 | `8px`    | 8px                            |
+| `em`  | 父元素的字體大小     | ✅ 會累加   | 區塊內比例控制         | `0.5em`  | 0.5 × 父元素字體大小          |
+| `rem` | 根元素（`<html>`） | ❌ 不會累加 | 響應式、整體一致性設計 | `0.5rem` | 0.5 × 16px =**8px**     |
 
 🔍 補充說明：
 
@@ -568,10 +568,10 @@ export default function LoginForm() {
 
 #### 📦 Flex 排版對照表
 
-| Flex 設定            | 主軸方向 | 副軸方向 | `justify-*`（主軸對齊）                                                       | `items-*`（副軸對齊）                                                       |
-| -------------------- | -------- | -------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| Flex 設定                | 主軸方向 | 副軸方向 | `justify-*`（主軸對齊）                                                              | `items-*`（副軸對齊）                                                              |
+| ------------------------ | -------- | -------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
 | `flex` or `flex-row` | 水平     | 垂直     | `justify-start` → 靠左<br />`justify-end` → 靠右<br />`justify-center` → 置中 | `items-start` → 靠上<br />`items-end` → 靠下<br />`items-center` → 垂直置中 |
-| `flex-col`           | 垂直     | 水平     | `justify-start` → 靠上<br />`justify-end` → 靠下<br />`justify-center` → 置中 | `items-start` → 靠左<br />`items-end` → 靠右<br />`items-center` → 水平置中 |
+| `flex-col`             | 垂直     | 水平     | `justify-start` → 靠上<br />`justify-end` → 靠下<br />`justify-center` → 置中 | `items-start` → 靠左<br />`items-end` → 靠右<br />`items-center` → 水平置中 |
 
 🧠 補充記憶技巧：
 
@@ -690,113 +690,149 @@ Tag 元件
 
 ```tsx
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
 import { Tag } from "primereact/tag";
 
 interface User {
-  id: number;
-  name: string;
-  email: string;
-  status: string;
-  password: string;
-  lastLogin: string;
+    id: number;
+    name: string;
+    email: string;
+    status: string;
+    password: string;
+    lastLogin: string;
+}
+const userService = {
+    getUsers: (): User[] => {
+        return [
+            {
+                id: 1,
+                name: "王小明",
+                email: "ming@example.com",
+                password: "123456",
+                status: "active",
+                lastLogin: "2024-03-15 14:30",
+            },
+            {
+                id: 2,
+                name: "李小華",
+                email: "hua@example.com",
+                password: "123456",
+                status: "active",
+                lastLogin: "2024-03-15 13:45",
+            },
+            {
+                id: 3,
+                name: "張小美",
+                email: "mei@example.com",
+                password: "123456",
+                status: "active",
+                lastLogin: "2024-03-14 09:20",
+            },
+        ];
+    }
 }
 
 export default function UserList() {
-  // 使用者資料
-  const [users] = useState<User[]>([
-    {
-      id: 1,
-      name: "王小明",
-      email: "ming@example.com",
-      password: "123456",
-      status: "active",
-      lastLogin: "2024-03-15 14:30",
-    },
-    {
-      id: 2,
-      name: "李小華",
-      email: "hua@example.com",
-      password: "123456",
-      status: "active",
-      lastLogin: "2024-03-15 13:45",
-    },
-    {
-      id: 3,
-      name: "張小美",
-      email: "mei@example.com",
-      password: "123456",
-      status: "active",
-      lastLogin: "2024-03-14 09:20",
-    },
-  ]);
+    // 使用者資料
+    const [users, setUsers] = useState<User[]>([]);
 
-  // 狀態標籤模板
-  const statusTemplate = (rowData: User) => {
+    // 使用 useEffect 來取得使用者資料 因為沒有監聽任何變數 所以是頁面第一次載入時會執行
+    useEffect(() => {
+        const data = userService.getUsers();
+        setUsers(data);
+    }, []);
+
+    // 狀態標籤模板
+    const statusTemplate = (rowData: User) => {
+        return (
+            <Tag
+                value={rowData.status === "active" ? "啟用" : "停用"}
+                severity={rowData.status === "active" ? "success" : "danger"}
+            />
+        );
+    };
+
+    // 操作按鈕模板
+    const actionTemplate = (rowData: User) => {
+        return (
+            <div className="flex gap-2">
+                <Button
+                    icon="pi pi-pencil"
+                    className="p-button-rounded p-button-text p-button-sm"
+                    tooltip="編輯"
+                    onClick={() => alert(`編輯 ${rowData.name}`)}
+                />
+                <Button
+                    icon="pi pi-trash"
+                    className="p-button-rounded p-button-text p-button-danger p-button-sm"
+                    tooltip="刪除"
+                    onClick={() => alert(`刪除 ${rowData.name}`)}
+                />
+            </div>
+        );
+    };
+
     return (
-      <Tag
-        value={rowData.status === "active" ? "啟用" : "停用"}
-        severity={rowData.status === "active" ? "success" : "danger"}
-      />
+        <div className="card">
+            <DataTable
+                value={users}
+                paginator
+                rows={5}
+                rowsPerPageOptions={[5, 10, 25, 50]}
+                paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+                currentPageReportTemplate="顯示第 {first} 到 {last} 筆，共 {totalRecords} 筆"
+                className="p-datatable-sm"
+            >
+                <Column
+                    field="id"
+                    header="ID"
+                    sortable
+                    className="w-[5%]"
+                />
+                <Column
+                    field="name"
+                    header="姓名"
+                    sortable
+                    className="w-[15%]"
+                />
+                <Column
+                    field="email"
+                    header="電子郵件"
+                    sortable
+                    className="w-[25%]"
+                />
+                <Column
+                    field="password"
+                    header="密碼"
+                    sortable
+                    className="w-[15%]"
+                />
+                <Column
+                    field="status"
+                    header="狀態"
+                    body={statusTemplate}
+                    sortable
+                    className="w-[15%]"
+                />
+                <Column
+                    field="lastLogin"
+                    header="最後登入"
+                    sortable
+                    className="w-[15%]"
+                />
+                <Column
+                    body={actionTemplate}
+                    header="操作"
+                    className="w-[10%]"
+                />
+            </DataTable>
+        </div>
     );
-  };
-
-  // 操作按鈕模板
-  const actionTemplate = (rowData: User) => {
-    return (
-      <div className="flex gap-2">
-        <Button
-          icon="pi pi-pencil"
-          className="p-button-rounded p-button-text p-button-sm"
-          tooltip="編輯"
-          onClick={() => alert(`編輯 ${rowData.name}`)}
-        />
-        <Button
-          icon="pi pi-trash"
-          className="p-button-rounded p-button-text p-button-danger p-button-sm"
-          tooltip="刪除"
-          onClick={() => alert(`刪除 ${rowData.name}`)}
-        />
-      </div>
-    );
-  };
-
-  return (
-    <div className="card">
-      <DataTable
-        value={users}
-        paginator
-        rows={5}
-        rowsPerPageOptions={[5, 10, 25, 50]}
-        paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-        currentPageReportTemplate="顯示第 {first} 到 {last} 筆，共 {totalRecords} 筆"
-        className="p-datatable-sm"
-      >
-        <Column field="id" header="ID" sortable className="w-[5%]" />
-        <Column field="name" header="姓名" sortable className="w-[15%]" />
-        <Column field="email" header="電子郵件" sortable className="w-[25%]" />
-        <Column field="password" header="密碼" sortable className="w-[15%]" />
-        <Column
-          field="status"
-          header="狀態"
-          body={statusTemplate}
-          sortable
-          className="w-[15%]"
-        />
-        <Column
-          field="lastLogin"
-          header="最後登入"
-          sortable
-          className="w-[15%]"
-        />
-        <Column body={actionTemplate} header="操作" className="w-[10%]" />
-      </DataTable>
-    </div>
-  );
 }
+
 ```
 
 #### 📝 驗證成果
@@ -853,20 +889,25 @@ interface Product {
     quantity: number;
 }
 
+// 宣告一個 service 物件，裡面有 getProducts 方法  若是有串後端API 則在此處串接
+const productService = {
+    getProducts: (): Product[] => {
+        return [
+            { id: 1, name: "商品 A", price: 100, quantity: 0 },
+            { id: 2, name: "商品 B", price: 200, quantity: 0 },
+            { id: 3, name: "商品 C", price: 300, quantity: 0 },
+        ];
+    }
+}
 export default function ShoppingCart() {
     // 商品列表狀態
-    const [products, setProducts] = useState<Product[]>([
-        { id: 1, name: "商品 A", price: 100, quantity: 0 },
-        { id: 2, name: "商品 B", price: 200, quantity: 0 },
-        { id: 3, name: "商品 C", price: 300, quantity: 0 },
-    ]);
+    const [products, setProducts] = useState<Product[]>(productService.getProducts());
 
     // 總金額狀態
     const [total, setTotal] = useState<number>(0);
 
     // 更新商品數量
     const updateQuantity = (id: number, quantity: number) => {
-
         setProducts(
             // 遍歷 products 陣列每一個商品 類似for迴圈
             products.map((product) =>
