@@ -1094,3 +1094,13 @@ export default function ShoppingCart() {
    }
    ```
 5. 嘗試著將過去的功能做成 Component 讓 Page.tsx 引用 讓同樣的元件可以重複使用
+
+
+
+
+
+
+
+
+
+
